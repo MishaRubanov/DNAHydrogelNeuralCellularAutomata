@@ -24,7 +24,7 @@ c_mat[rr,cc,:3] =0
 # c_mat[:,:,-1] = 1.0
 plt.figure()
 plt.imshow(c_mat)
-np.save('cirv4.npy',c_mat)
+np.save('cirv5.npy',c_mat)
 # f, axarr = plt.subplots(2,2)
 
 h = 72
