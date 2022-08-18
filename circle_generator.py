@@ -23,7 +23,7 @@ rr,cc = skimage.draw.disk((h//2,w//2),5)
 c_mat[rr,cc,:] =255
 plt.figure()
 plt.imshow(c_mat)
-np.save('cir.npy',c_mat)
+np.save('cirv3.npy',c_mat)
 # f, axarr = plt.subplots(2,2)
 
 h = 72
