@@ -20,11 +20,11 @@ w = 40
 c_mat = np.ones((h, w,4), dtype=np.float32)
 
 rr,cc = skimage.draw.disk((h//2,w//2),5)
-c_mat[rr,cc,:3] =0
+c_mat[rr,cc,0] =0
 # c_mat[:,:,-1] = 1.0
 plt.figure()
 plt.imshow(c_mat)
-np.save('cirv5.npy',c_mat)
+np.save('cirv5_onelayer.npy',c_mat)
 # f, axarr = plt.subplots(2,2)
 
 h = 72
