@@ -17,12 +17,12 @@ import skimage
 # plt.imshow(c_mat)
 h = 40
 w = 40
-c_mat = np.zeros((h, w,4), dtype=np.uint8)
+c_mat = np.zeros((h, w,3), dtype=np.uint8)
 
 rr,cc = skimage.draw.disk((h//2,w//2),5)
-c_mat[rr,cc,:3] = 1
+c_mat[rr,cc,:] =255
 plt.figure()
-plt.imshow(c_mat[:,:,0])
+plt.imshow(c_mat)
 np.save('cir.npy',c_mat)
 # f, axarr = plt.subplots(2,2)
 
