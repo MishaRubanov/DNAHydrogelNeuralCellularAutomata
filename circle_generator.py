@@ -20,15 +20,15 @@ w = 40
 c_mat = np.ones((h, w,4), dtype=np.float32)
 
 rr,cc = skimage.draw.disk((h//2,w//2),5)
-c_mat[rr,cc,0] =0
+c_mat[rr,cc,:] =0
 # c_mat[:,:,-1] = 1.0
 plt.figure()
 plt.imshow(c_mat)
-np.save('cirv5_onelayer.npy',c_mat)
+np.save('cirv6.npy',c_mat)
 # f, axarr = plt.subplots(2,2)
 
-h = 72
-w = 72
+h = 40
+w = 40
 seed = np.zeros([h, w, 16], np.float32)
 seed[h//2, w//2, 3:] = 1.0
 # plt.figure()
@@ -53,3 +53,25 @@ def load_image(url, max_size=TARGET_SIZE):
 z = load_image(url)
 plt.figure()
 plt.imshow(z)
+
+import tensorflow as tf
+pad_target = c_mat[:,:,0]
+def to_rgba(x):
+    return x[...,:4]
+
+def to_g(x):
+    return x[...,0]
+
+def loss_f2(x):
+  return tf.reduce_mean(tf.square(to_g(x)-pad_target))#, [-2, -1])
+
+c_mat2 = np.ones((h, w,4), dtype=np.float32)
+
+rr,cc = skimage.draw.disk((h//2,w//2),3)
+c_mat2[rr,cc,0] =0
+
+z = loss_f2(seed)
+loss = tf.reduce_mean(loss_f2(c_mat2))
+l2 = np.array(loss)
+y1 = to_g(seed)
+y2 = to_rgba(seed)
