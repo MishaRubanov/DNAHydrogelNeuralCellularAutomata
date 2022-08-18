@@ -17,11 +17,11 @@ import skimage
 # plt.imshow(c_mat)
 h = 40
 w = 40
-c_mat = np.zeros((h, w,4), dtype=np.float32)
+c_mat = np.ones((h, w,4), dtype=np.float32)
 
 rr,cc = skimage.draw.disk((h//2,w//2),5)
-c_mat[rr,cc,:3] =1.0
-c_mat[:,:,-1] = 1.0
+c_mat[rr,cc,:3] =0
+# c_mat[:,:,-1] = 1.0
 plt.figure()
 plt.imshow(c_mat)
 np.save('cirv4.npy',c_mat)
